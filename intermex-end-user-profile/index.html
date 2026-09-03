@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Dashboard ejecutivo del perfil de usuario final de INTERMEX S.A. basado en Disciplined Entrepreneurship, Step 3: Build an End User Profile.">
+<title>INTERMEX S.A. | End User Profile</title>
+<style>
+:root{
+  --bg:#080b10;
+  --panel:#11161f;
+  --panel2:#171d27;
+  --line:#27303d;
+  --text:#f5f7fa;
+  --muted:#9ba7b7;
+  --red:#d8171d;
+  --red2:#ff4b50;
+  --green:#27c28a;
+  --amber:#f0b94b;
+  --blue:#5ba8ff;
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 80% 0%,rgba(216,23,29,.16),transparent 27%),var(--bg);color:var(--text);font-family:Inter,Arial,Helvetica,sans-serif;line-height:1.5}
+a{color:inherit}
+.wrap{max-width:1280px;margin:auto;padding:30px 24px 60px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:42px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.02em}
+.brandmark{width:40px;height:40px;background:var(--red);border-radius:10px;display:grid;place-items:center;font-size:20px;box-shadow:0 8px 28px rgba(216,23,29,.25)}
+.brand small{display:block;color:var(--muted);font-weight:600;letter-spacing:.08em;font-size:10px;text-transform:uppercase}
+.badge{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:999px;padding:7px 11px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:#cbd3de}
+.dot{width:7px;height:7px;background:var(--red);border-radius:50%}
+.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:24px;align-items:stretch;margin-bottom:24px}
+.hero-main{padding:34px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,rgba(216,23,29,.13),rgba(17,22,31,.92) 55%)}
+.eyebrow{color:var(--red2);font-weight:900;text-transform:uppercase;letter-spacing:.13em;font-size:12px}
+h1{font-size:clamp(36px,5vw,64px);line-height:1.02;margin:12px 0 18px;letter-spacing:-.04em}
+.lead{font-size:18px;color:#cbd3de;max-width:800px;margin:0}
+.hero-side{padding:28px;border:1px solid var(--line);border-radius:24px;background:var(--panel);display:flex;flex-direction:column;justify-content:space-between}
+.hero-side .quote{font-size:22px;font-weight:800;line-height:1.25;margin:0 0 26px}
+.hero-side .quote span{color:var(--red2)}
+.meta{font-size:12px;color:var(--muted)}
+.grid{display:grid;gap:16px}
+.kpis{grid-template-columns:repeat(4,1fr);margin-bottom:32px}
+.card{background:linear-gradient(180deg,var(--panel),#0e131b);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.kpi-value{font-size:31px;font-weight:900;letter-spacing:-.04em;margin:5px 0 3px}
+.kpi-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:800}
+.kpi-note{font-size:12px;color:#c3ccd8}
+h2{font-size:25px;margin:42px 0 16px;letter-spacing:-.02em}
+h3{margin:0 0 9px;font-size:17px}
+.sub{color:var(--muted);margin-top:-7px;margin-bottom:18px;max-width:850px}
+.two{grid-template-columns:1fr 1fr}
+.three{grid-template-columns:repeat(3,1fr)}
+.four{grid-template-columns:repeat(4,1fr)}
+.persona{display:grid;grid-template-columns:.7fr 1.3fr;gap:16px}
+.persona-main{background:linear-gradient(160deg,var(--red),#941116);border:none;position:relative;overflow:hidden}
+.persona-main:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;border:42px solid rgba(255,255,255,.06);right:-105px;bottom:-105px}
+.persona-icon{font-size:50px;margin-bottom:28px}
+.persona-name{font-size:34px;font-weight:900;letter-spacing:-.03em}
+.persona-role{font-size:15px;font-weight:800;margin-top:2px}
+.persona-copy{margin-top:18px;font-size:14px;color:#fff}
+.tag{display:inline-block;border-radius:999px;background:#242c38;border:1px solid #313b49;padding:6px 9px;margin:3px 3px 3px 0;font-size:11px;font-weight:700;color:#d7dee7}
+.tag.red{background:rgba(216,23,29,.14);border-color:rgba(216,23,29,.38);color:#ff9ea1}
+.tag.green{background:rgba(39,194,138,.11);border-color:rgba(39,194,138,.30);color:#91e7c9}
+.mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+.mini{background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:14px}
+.mini b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px;color:#e9edf2}
+.mini span{font-size:13px;color:var(--muted)}
+.list{margin:0;padding-left:18px;color:#d2dae4}
+.list li{margin:7px 0}
+.note{font-size:12px;color:var(--muted);border-left:3px solid var(--red);padding-left:11px;margin-top:15px}
+.priority-row{display:grid;grid-template-columns:210px 1fr 52px;gap:12px;align-items:center;margin:13px 0}
+.priority-name{font-size:13px;font-weight:700}
+.bar{height:10px;background:#242b35;border-radius:99px;overflow:hidden}
+.bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--red2));border-radius:99px}
+.priority-num{text-align:right;font-size:13px;font-weight:900}
+.timeline{position:relative;padding-left:20px}
+.timeline:before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:#303947}
+.event{position:relative;padding:0 0 20px 18px}
+.event:before{content:"";position:absolute;left:-20px;top:5px;width:10px;height:10px;border:2px solid var(--red2);background:var(--panel);border-radius:50%}
+.event-time{font-size:11px;color:var(--red2);font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+.event p{margin:3px 0 0;color:#c4ced9;font-size:13px}
+.risk{border-top:3px solid var(--red)}
+.motive{border-top:3px solid var(--green)}
+.channel{display:flex;align-items:flex-start;gap:12px}
+.channel-icon{width:38px;height:38px;flex:0 0 38px;border-radius:11px;background:#202733;display:grid;place-items:center;font-size:18px}
+.channel p{margin:2px 0 0;font-size:13px;color:var(--muted)}
+.strategy-card{position:relative;overflow:hidden}
+.strategy-card .num{position:absolute;right:16px;top:5px;font-size:56px;font-weight:900;color:rgba(255,255,255,.04)}
+.quote-box{margin:18px 0 0;padding:18px;border-radius:15px;background:#0a0e14;border:1px solid var(--line);font-size:20px;font-weight:900;line-height:1.35}
+.quote-box span{color:var(--red2)}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{color:var(--muted);text-transform:uppercase;letter-spacing:.07em;font-size:10px;text-align:left;padding:12px 10px;border-bottom:1px solid var(--line)}
+td{padding:13px 10px;border-bottom:1px solid #222a35;vertical-align:top}
+.status{display:inline-flex;padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900;letter-spacing:.05em;text-transform:uppercase}
+.status.hyp{background:rgba(240,185,75,.13);color:#ffd27d;border:1px solid rgba(240,185,75,.25)}
+.status.val{background:rgba(39,194,138,.12);color:#87e4c3;border:1px solid rgba(39,194,138,.25)}
+.callout{background:linear-gradient(130deg,#141a24,#191118);border:1px solid #3b2528;border-radius:22px;padding:28px;margin-top:18px;display:grid;grid-template-columns:1fr auto;gap:25px;align-items:center}
+.callout h3{font-size:23px;margin-bottom:8px}
+.callout p{margin:0;color:#c7d0dc;max-width:850px}
+.callout .pill{background:var(--red);font-weight:900;border-radius:14px;padding:13px 16px;white-space:nowrap}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px}
+.footer strong{color:#e5e9ee}
+.print-btn{cursor:pointer;border:1px solid var(--line);background:#161c25;color:#eef2f6;border-radius:10px;padding:9px 12px;font-weight:800;font-size:11px}
+@media(max-width:980px){.hero,.persona,.two,.three,.four,.kpis{grid-template-columns:1fr}.callout{grid-template-columns:1fr}.priority-row{grid-template-columns:140px 1fr 45px}.topbar{align-items:flex-start;flex-direction:column}}
+@media print{body{background:#fff;color:#111}.wrap{max-width:none}.card,.hero-main,.hero-side,.callout{background:#fff;color:#111;box-shadow:none}.muted,.sub,.meta,.kpi-label,.kpi-note,.channel p,.event p,.footer{color:#555}.print-btn{display:none}.bar{background:#ddd}.tag{color:#333;background:#eee}.quote-box{background:#f6f6f6;color:#111}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand"><div class="brandmark">I</div><div>INTERMEX S.A.<small>Inteligencia comercial · Bolivia</small></div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="badge"><span class="dot"></span> Uso interno · Directorio</span><button class="print-btn" onclick="window.print()">Imprimir / PDF</button></div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-main">
+      <div class="eyebrow">Disciplined Entrepreneurship · Step 3</div>
+      <h1>Perfil de Usuario Final<br>INTERMEX S.A.</h1>
+      <p class="lead">Hipótesis ejecutiva del cliente prioritario para orientar decisiones comerciales, marketing, CRM y propuesta de valor en el mercado boliviano.</p>
+    </div>
+    <aside class="hero-side">
+      <p class="quote">El foco no es “quién podría comprar”, sino <span>quién representa mejor al usuario que queremos entender profundamente.</span></p>
+      <div class="meta">Base metodológica: Bill Aulet · <i>Disciplined Entrepreneurship</i> · “Build an End User Profile” · PDF pp. 113–121.</div>
+    </aside>
+  </section>
+
+  <section class="grid kpis">
+    <div class="card"><div class="kpi-label">Segmento prioritario propuesto</div><div class="kpi-value">Socio Comercial</div><div class="kpi-note">Revendedor / comerciante independiente en Bolivia</div></div>
+    <div class="card"><div class="kpi-label">Objetivo principal</div><div class="kpi-value">Rotación + margen</div><div class="kpi-note">Comprar modelos con potencial comercial y capital inmovilizado mínimo</div></div>
+    <div class="card"><div class="kpi-label">Canal decisivo</div><div class="kpi-value">WhatsApp</div><div class="kpi-note">La captación puede comenzar en RRSS, pero la confianza se construye en conversación</div></div>
+    <div class="card"><div class="kpi-label">Estado del perfil</div><div class="kpi-value">Hipótesis</div><div class="kpi-note">Debe validarse con Primary Market Research (PMR)</div></div>
+  </section>
+
+  <h2>1. Persona de referencia</h2>
+  <p class="sub">El libro recomienda representar al mercado con una persona concreta, no con un segmento abstracto. La siguiente persona es una hipótesis de trabajo para alinear al equipo.</p>
+  <section class="persona">
+    <div class="card persona-main">
+      <div class="persona-icon">👤</div>
+      <div class="persona-name">“Carlos”</div>
+      <div class="persona-role">Socio Comercial · Bolivia</div>
+      <p class="persona-copy">Compra vehículos 0 KM con intención de reventa. Busca oportunidades que combinen precio, rotación, disponibilidad y seguridad operacional.</p>
+    </div>
+    <div class="card">
+      <h3>Perfil ejecutivo</h3>
+      <div class="mini-grid">
+        <div class="mini"><b>Edad</b><span>30–55 años · rango preliminar a validar</span></div>
+        <div class="mini"><b>Ubicación</b><span>Bolivia · foco en ciudades donde INTERMEX ya genera actividad comercial</span></div>
+        <div class="mini"><b>Ocupación</b><span>Comerciante, revendedor, importador o pequeño empresario automotriz</span></div>
+        <div class="mini"><b>Volumen</b><span>Compra de varias unidades cuando identifica una oportunidad rentable</span></div>
+        <div class="mini"><b>Comportamiento digital</b><span>WhatsApp, Facebook, Marketplace, TikTok y redes de contactos</span></div>
+        <div class="mini"><b>Criterio de compra</b><span>Resultado del negocio, no solo atributos técnicos del vehículo</span></div>
+      </div>
+      <div style="margin-top:15px"><span class="tag red">Busca margen</span><span class="tag red">Valora rotación</span><span class="tag green">Necesita confianza</span><span class="tag">Compara constantemente</span><span class="tag">Opera en red</span></div>
+      <p class="note">Los datos demográficos no deben usarse como explicación automática de compra. La metodología prioriza comprender necesidades, motivaciones y comportamiento real.</p>
+    </div>
+  </section>
+
+  <h2>2. Psicografía y lógica de decisión</h2>
+  <section class="grid three">
+    <div class="card"><h3>Orientado al negocio</h3><p class="sub" style="margin:0">Evalúa cuánto puede ganar, cuánto demora en recuperar capital y qué tan vendible será el modelo.</p></div>
+    <div class="card"><h3>Pragmático</h3><p class="sub" style="margin:0">Prioriza precio, stock, respaldo y facilidad de ejecución por sobre atributos aspiracionales aislados.</p></div>
+    <div class="card"><h3>Buscador de oportunidades</h3><p class="sub" style="margin:0">Monitorea modelos, tendencias, precios y condiciones que puedan abrir una ventaja comercial.</p></div>
+    <div class="card"><h3>Sensible al riesgo</h3><p class="sub" style="margin:0">Una operación remota exige seguridad documental, reputación, comunicación y cumplimiento.</p></div>
+    <div class="card"><h3>Influenciado por su red</h3><p class="sub" style="margin:0">Transportistas, agentes, otros comerciantes y compradores aportan referencias que reducen incertidumbre.</p></div>
+    <div class="card"><h3>Digital pero relacional</h3><p class="sub" style="margin:0">Descubre opciones en redes, pero el cierre requiere conversación directa y confianza interpersonal.</p></div>
+  </section>
+
+  <h2>3. ¿Dónde vive comercialmente este cliente?</h2>
+  <p class="sub">La metodología llama “Proxy Products” a productos o servicios que revelan patrones de comportamiento, y “Watering Holes” a los lugares físicos o digitales donde el usuario se concentra.</p>
+  <section class="grid two">
+    <div class="card">
+      <h3>Proxy Products</h3>
+      <ul class="list">
+        <li>Facebook Marketplace y publicaciones de venta de vehículos.</li>
+        <li>WhatsApp Business y mensajería directa con proveedores.</li>
+        <li>Servicios de transporte Chile–Bolivia.</li>
+        <li>Agencias despachantes de aduana.</li>
+        <li>Medios de pago y transferencias para operaciones comerciales.</li>
+        <li>Otros importadores y proveedores de vehículos en ZOFRI.</li>
+      </ul>
+      <p class="note">Lectura estratégica: INTERMEX compite no solo con otros vendedores, sino también con la opción de que el cliente arme la operación por partes con distintos proveedores.</p>
+    </div>
+    <div class="card">
+      <h3>Watering Holes</h3>
+      <div class="grid two" style="margin-top:12px">
+        <div class="channel"><div class="channel-icon">f</div><div><b>Facebook / Marketplace</b><p>Descubrimiento, comparación y oferta visible.</p></div></div>
+        <div class="channel"><div class="channel-icon">▶</div><div><b>TikTok</b><p>Descubrimiento de modelos y tendencias.</p></div></div>
+        <div class="channel"><div class="channel-icon">💬</div><div><b>WhatsApp</b><p>Consulta, negociación y cierre.</p></div></div>
+        <div class="channel"><div class="channel-icon">🤝</div><div><b>Red comercial</b><p>Referencias, transportistas, aduana y otros comerciantes.</p></div></div>
+        <div class="channel"><div class="channel-icon">🚘</div><div><b>Ferias / zonas automotrices</b><p>Observación de demanda y competencia.</p></div></div>
+        <div class="channel"><div class="channel-icon">📍</div><div><b>ZOFRI Iquique</b><p>Punto de abastecimiento y validación de proveedor.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <h2>4. Day in the Life</h2>
+  <p class="sub">El objetivo es entender cuándo aparecen las necesidades y en qué momentos INTERMEX puede generar valor.</p>
+  <section class="grid two">
+    <div class="card timeline">
+      <div class="event"><div class="event-time">08:00–09:00</div><p>Revisa WhatsApp, consultas de clientes y publicaciones de vehículos.</p></div>
+      <div class="event"><div class="event-time">10:00–12:00</div><p>Pregunta por stock, colores, versiones y precios; compara proveedores.</p></div>
+      <div class="event"><div class="event-time">12:00–15:00</div><p>Calcula costo total estimado: vehículo + operación + traslado + nacionalización + margen esperado.</p></div>
+      <div class="event"><div class="event-time">15:00–18:00</div><p>Negocia, coordina con transportistas/agencia y puede reservar o comprar.</p></div>
+      <div class="event" style="padding-bottom:0"><div class="event-time">Noche</div><p>Vuelve a redes y Marketplace para medir oferta, demanda y precios de mercado.</p></div>
+    </div>
+    <div class="card">
+      <h3>Preguntas que gobiernan su decisión</h3>
+      <div class="quote-box">“¿En cuánto me queda <span>puesto en Bolivia</span>?”</div>
+      <div class="quote-box">“¿Cuánto puedo <span>ganar</span>?”</div>
+      <div class="quote-box">“¿Este modelo <span>se vende</span>?”</div>
+      <div class="quote-box">“¿Hay <span>stock real</span>?”</div>
+      <div class="quote-box">“¿Puedo <span>confiar</span> en este proveedor?”</div>
+    </div>
+  </section>
+
+  <h2>5. Miedos y motivadores</h2>
+  <section class="grid two">
+    <div class="card risk">
+      <h3>Principales miedos</h3>
+      <ul class="list">
+        <li>Inmovilizar capital en un vehículo que no rota.</li>
+        <li>Perder margen por costos no considerados o cambios en la operación.</li>
+        <li>Comprar a distancia a un proveedor poco confiable.</li>
+        <li>Tener problemas de documentación, transporte o nacionalización.</li>
+        <li>Elegir un modelo con poca demanda en su mercado.</li>
+        <li>Quedar sin respaldo ante una incidencia del vehículo.</li>
+      </ul>
+    </div>
+    <div class="card motive">
+      <h3>Principales motivadores</h3>
+      <ul class="list">
+        <li>Margen comercial atractivo.</li>
+        <li>Rotación rápida y recuperación de capital.</li>
+        <li>Stock disponible y oportunidad de compra.</li>
+        <li>Modelos con señales claras de demanda.</li>
+        <li>Proceso simple y acompañado.</li>
+        <li>Proveedor estable, trazable y con respaldo.</li>
+      </ul>
+    </div>
+  </section>
+
+  <h2>6. Prioridades de compra · ponderación preliminar</h2>
+  <p class="sub">Propuesta de 100 puntos para visualizar qué factores podrían pesar más en la decisión. No corresponde a un dato observado: debe validarse mediante entrevistas y comportamiento comercial real.</p>
+  <section class="card">
+    <div class="priority-row"><div class="priority-name">Rentabilidad / margen</div><div class="bar"><span style="width:100%"></span></div><div class="priority-num">25%</div></div>
+    <div class="priority-row"><div class="priority-name">Precio competitivo</div><div class="bar"><span style="width:80%"></span></div><div class="priority-num">20%</div></div>
+    <div class="priority-row"><div class="priority-name">Rotación / demanda</div><div class="bar"><span style="width:80%"></span></div><div class="priority-num">20%</div></div>
+    <div class="priority-row"><div class="priority-name">Confianza en proveedor</div><div class="bar"><span style="width:60%"></span></div><div class="priority-num">15%</div></div>
+    <div class="priority-row"><div class="priority-name">Stock disponible</div><div class="bar"><span style="width:40%"></span></div><div class="priority-num">10%</div></div>
+    <div class="priority-row"><div class="priority-name">Facilidad de proceso</div><div class="bar"><span style="width:20%"></span></div><div class="priority-num">5%</div></div>
+    <div class="priority-row"><div class="priority-name">Garantía / respaldo</div><div class="bar"><span style="width:20%"></span></div><div class="priority-num">5%</div></div>
+    <p class="note">Insight a validar: para un revendedor, el vehículo “más barato” no necesariamente es el mejor negocio si rota más lento o eleva el riesgo de la operación.</p>
+  </section>
+
+  <h2>7. Implicancias para INTERMEX</h2>
+  <section class="grid three">
+    <div class="card strategy-card"><div class="num">01</div><h3>Vender negocio, no solo vehículo</h3><p class="sub" style="margin:0">La ficha técnica debe estar acompañada por argumentos de oportunidad: disponibilidad, demanda, respaldo y conveniencia comercial.</p></div>
+    <div class="card strategy-card"><div class="num">02</div><h3>Conectar RRSS → WhatsApp</h3><p class="sub" style="margin:0">Meta y TikTok pueden generar descubrimiento; WhatsApp debe concentrar diagnóstico, negociación, seguimiento y cierre.</p></div>
+    <div class="card strategy-card"><div class="num">03</div><h3>Reducir incertidumbre</h3><p class="sub" style="margin:0">Mostrar stock real, proceso, documentación, respaldo de INTERMEX y acompañamiento disminuye fricción en compras remotas.</p></div>
+    <div class="card strategy-card"><div class="num">04</div><h3>Segmentar el CRM</h3><p class="sub" style="margin:0">Diferenciar socio comercial, comprador final, flota y otros perfiles para cambiar mensaje, frecuencia y propuesta de valor.</p></div>
+    <div class="card strategy-card"><div class="num">05</div><h3>Contenido orientado a decisión</h3><p class="sub" style="margin:0">No limitarse a “potencia y autonomía”. Explicar qué problema comercial resuelve cada modelo y para qué tipo de comprador puede funcionar.</p></div>
+    <div class="card strategy-card"><div class="num">06</div><h3>Construir evidencia</h3><p class="sub" style="margin:0">Entregas, testimonios, recurrencia, garantías y casos de clientes ayudan a convertir reputación en un activo de venta.</p></div>
+  </section>
+
+  <div class="callout">
+    <div><h3>Propuesta de valor enfocada al perfil</h3><p>INTERMEX ayuda a socios comerciales bolivianos a identificar y comprar vehículos 0 KM con potencial de rotación y rentabilidad desde ZOFRI, mediante una operación segura, acompañada y con respaldo.</p></div>
+    <div class="pill">Tu aliado comercial</div>
+  </div>
+
+  <h2>8. Plan de validación con clientes</h2>
+  <p class="sub">La metodología de Aulet insiste en que el perfil no debe construirse desde la oficina. La siguiente etapa es contrastar estas hipótesis con usuarios reales mediante Primary Market Research.</p>
+  <section class="card table-wrap">
+    <table>
+      <thead><tr><th>Hipótesis</th><th>Qué debemos preguntar / observar</th><th>Estado</th></tr></thead>
+      <tbody>
+        <tr><td>Margen y rotación son las prioridades principales</td><td>¿Qué define que un modelo sea “buen negocio”? ¿Cuál es el tiempo de venta aceptable?</td><td><span class="status hyp">Por validar</span></td></tr>
+        <tr><td>WhatsApp es el canal decisivo de cierre</td><td>¿Dónde descubrió INTERMEX? ¿En qué canal tomó la decisión final?</td><td><span class="status hyp">Por validar</span></td></tr>
+        <tr><td>El riesgo de proveedor frena compras remotas</td><td>¿Qué evidencia necesita antes de transferir dinero o reservar?</td><td><span class="status hyp">Por validar</span></td></tr>
+        <tr><td>Stock real y rapidez elevan conversión</td><td>¿Cuánto influye disponibilidad inmediata frente a una mejor oferta con espera?</td><td><span class="status hyp">Por validar</span></td></tr>
+        <tr><td>El respaldo histórico diferencia a INTERMEX</td><td>¿Conoce la trayectoria de la empresa? ¿Aumenta su confianza o preferencia?</td><td><span class="status hyp">Por validar</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <h2>9. Decisión que este perfil debe habilitar</h2>
+  <section class="grid three">
+    <div class="card"><div class="kpi-label">Marketing</div><h3 style="margin-top:7px">¿Qué mensaje priorizamos?</h3><p class="sub" style="margin:0">Oportunidad comercial, stock, confianza y proceso; después, especificaciones técnicas.</p></div>
+    <div class="card"><div class="kpi-label">Ventas / CRM</div><h3 style="margin-top:7px">¿Cómo calificamos?</h3><p class="sub" style="margin:0">Tipo de comprador, volumen, ciudad, interés, timing, modelo, experiencia de importación y potencial de recompra.</p></div>
+    <div class="card"><div class="kpi-label">Gerencia</div><h3 style="margin-top:7px">¿Qué validamos?</h3><p class="sub" style="margin:0">Si el Socio Comercial es efectivamente el perfil con mayor valor, recurrencia y potencial de crecimiento.</p></div>
+  </section>
+
+  <footer class="footer">
+    <div><strong>INTERMEX S.A.</strong><br>Perfil de Usuario Final · Septiembre 2026 · Documento ejecutivo de uso interno.</div>
+    <div style="text-align:right"><strong>Preparado por Francisca Calderón A.</strong><br>Marketing · Metodología: Disciplined Entrepreneurship, Step 3.</div>
+  </footer>
+</div>
+</body>
+</html>
